@@ -1,0 +1,96 @@
+@charset "utf-8";
+.zy-button{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &.primary{
+      width: 100px;
+      height: 35px;
+      color: rgb(253, 253, 253);
+      background-color: #3C57C4; 
+      &.outline{
+        border: 1px solid #3C57C4;
+        color: #3C57C4;
+        background-color: transparent;
+      }     
+    }
+    &.default{
+      width: 100px;
+      height: 35px;
+      color: black;
+      border: 1px black solid;
+      &.outline{
+        border: 1px solid white;
+        color:white;
+        background-color: transparent;
+      }
+    }
+    &.danger{
+      width: 100px;
+      height: 35px;
+      color: rgb(253, 253, 253);
+      background-color: rgba(255, 51, 0, 0.959);
+      &.outline{
+        border: 1px solid rgba(255, 51, 0, 0.959);
+        color:rgba(255, 51, 0, 0.959);
+        background-color: transparent;
+      }  
+    }
+    &.info{
+      width: 100px;
+      height: 35px;
+      color: rgb(253, 253, 253);
+      background-color: #0ea6d4;
+      &.outline{
+        border: 1px solid #0ea6d4;
+        color:#0ea6d4;
+        background-color: transparent;
+      }      
+    }
+    &.success{
+      width: 100px;
+      height: 35px;
+      color: rgb(253, 253, 253);
+      background-color: #5ed690;
+      &.outline{
+        border: 1px solid #5ed690;
+        color :#5ed690;
+        background-color: transparent;
+      }    
+    }
+    &.warning{
+      width: 100px;
+      height: 35px;
+      color: rgb(253, 253, 253);
+      background-color: #fab521;
+      &.outline{
+        border: 1px solid  #fab521;
+        color  :#fab521;
+        background-color: transparent;
+      }     
+    }
+    &.small{
+        width: 50px;
+        height: 20px;
+      }
+    &.normal{
+        width: 70px;
+        height: 30px; 
+      }
+    &.large{
+        width: 90px;
+        height: 50px; 
+      }
+    &.circle{
+      width: 40px;
+      height: 40px;
+      border-radius:200px
+    }
+    &.disable{
+      pointer-events: none;
+    }
+    &.loading{
+      background-color: rgb(16, 182, 204);
+    }
+   }
