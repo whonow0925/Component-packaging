@@ -1,35 +1,50 @@
 <template>
   <div id="app">
-    <zy-button @click="click"
-      type="danger"
-      size="large"
-      outline
-      disable>按钮</zy-button>
-    <div class="out"
-      style="width:500px;height:400px;background-color:blue">
-      <default-graph type="list"></default-graph>
-    </div>
-    <zy-charts></zy-charts>
-    <!-- <zy-tree :chartData="chartData" chart-title="执行时间"></zy-tree> -->
-    <!-- <chart-tree :chartData="chartData" :chartTitle="chartTitle"></chart-tree> -->
-    <tree-chart :chartData="chartData"></tree-chart>
-    <canvas id="canvas_1"
-      width="500"
-      height="500"></canvas>
+    <!-- 自定义按钮 -->
+    <template v-if="showZyButton">
+      <zy-button @click="click" type="danger" size="large" outline disable
+        >按钮</zy-button
+      >
+    </template>
+    <!-- 【暂无数据】缺省图 -->
+    <template v-if="showDefaultGraph">
+      <div class="out" style="width:500px;height:400px;background-color:blue">
+        <default-graph type="list"></default-graph>
+      </div>
+    </template>
+    <!-- echart -->
+    <template v-if="showZyCharts">
+      <zy-charts></zy-charts>
+      <!-- <zy-tree :chartData="chartData" chart-title="执行时间"></zy-tree> -->
+      <!-- <chart-tree :chartData="chartData" :chartTitle="chartTitle"></chart-tree> -->
+    </template>
+    <!-- echart 树状图 -->
+    <template v-if="showTreeChart">
+      <tree-chart :chartData="chartData"></tree-chart>
+    </template>
+    <!-- canvas -->
+    <template v-if="showCanvas">
+      <canvas id="canvas_1" width="500" height="500"></canvas>
+    </template>
+    <!-- @scoll-timeline -->
+    <template v-if="showScollTimeline">
+      <scroll-timeline></scroll-timeline>
+    </template>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import ZyButton from './components/Button/index.vue'
-import DefaultGraph from './components/DefaultGraph/index.vue'
-import ZyCharts from './components/Echart.vue'
+import ZyButton from "./components/Button/index.vue";
+import DefaultGraph from "./components/DefaultGraph/index.vue";
+import ZyCharts from "./components/Echart.vue";
 // import chartTree from './components/EchartsTree/echart_tree.vue'
-import TreeChart from './components/treeChart/index.vue'
+import TreeChart from "./components/treeChart/index.vue";
 // import Canvas from './components/Canvas/index'
+import ScrollTimeline from "./components/scrollTimeLine/index.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     ZyButton,
     DefaultGraph,
@@ -37,9 +52,16 @@ export default {
     // chartTree
     TreeChart,
     // Canvas,
+    ScrollTimeline,
   },
   data() {
     return {
+      showScollTimeline: true,
+      showCanvas: false,
+      showTreeChart: false,
+      showZyCharts: false,
+      showDefaultGraph: false,
+      showZyButton: false,
       // chartData: [
       //   {
       //     name: 'flare',
@@ -449,237 +471,237 @@ export default {
               children: [
                 {
                   children: [],
-                  component: 'HttpClient',
+                  component: "HttpClient",
                   dur: 1,
                   endTime: 1605247596426,
-                  endpointName: '/v1/catalog/services',
+                  endpointName: "/v1/catalog/services",
                   isError: true,
-                  label: '/v1/catalog/services',
-                  layer: 'Http',
+                  label: "/v1/catalog/services",
+                  layer: "Http",
                   level: 2,
                   log: [],
                   parentSpanId: 0,
-                  peer: 'do1cloud-insight-consul-server:8500',
+                  peer: "do1cloud-insight-consul-server:8500",
                   refs: [],
                   segmentId:
-                    '449bd9796b2e44cbabf40de262451a21.71.16052475964246584',
-                  serviceCode: 'do1cloud-authorization',
+                    "449bd9796b2e44cbabf40de262451a21.71.16052475964246584",
+                  serviceCode: "do1cloud-authorization",
                   spanId: 1,
                   startTime: 1605247596425,
                   tag: [
                     {
-                      key: 'url',
+                      key: "url",
                       value:
-                        'http://do1cloud-insight-consul-server:8500/v1/catalog/services',
+                        "http://do1cloud-insight-consul-server:8500/v1/catalog/services",
                     },
-                    { key: 'http.method', value: 'GET' },
+                    { key: "http.method", value: "GET" },
                   ],
                   totalExec: 4,
                   traceId:
-                    '449bd9796b2e44cbabf40de262451a21.71.16052475964246585',
-                  type: 'Exit',
-                  uniqueKey: 'HttpClient1',
+                    "449bd9796b2e44cbabf40de262451a21.71.16052475964246585",
+                  type: "Exit",
+                  uniqueKey: "HttpClient1",
                 },
                 {
                   children: [
                     {
                       children: [],
-                      component: 'HttpClient',
+                      component: "HttpClient",
                       dur: 1,
                       endTime: 1605247596426,
-                      endpointName: '/v1/catalog/services',
+                      endpointName: "/v1/catalog/services",
                       isError: false,
-                      label: '/v1/catalog/services',
-                      layer: 'Http',
+                      label: "/v1/catalog/services",
+                      layer: "Http",
                       level: 2,
                       log: [],
                       parentSpanId: 0,
-                      peer: 'do1cloud-insight-consul-server:8500',
+                      peer: "do1cloud-insight-consul-server:8500",
                       refs: [],
                       segmentId:
-                        '449bd9796b2e44cbabf40de262451a21.71.16052475964246584',
-                      serviceCode: 'do1cloud-authorization',
+                        "449bd9796b2e44cbabf40de262451a21.71.16052475964246584",
+                      serviceCode: "do1cloud-authorization",
                       spanId: 1,
                       startTime: 1605247596425,
                       tag: [
                         {
-                          key: 'url',
+                          key: "url",
                           value:
-                            'http://do1cloud-insight-consul-server:8500/v1/catalog/services',
+                            "http://do1cloud-insight-consul-server:8500/v1/catalog/services",
                         },
-                        { key: 'http.method', value: 'GET' },
+                        { key: "http.method", value: "GET" },
                       ],
                       totalExec: 4,
                       traceId:
-                        '449bd9796b2e44cbabf40de262451a21.71.16052475964246585',
-                      type: 'Exit',
-                      uniqueKey: 'HttpClient1',
+                        "449bd9796b2e44cbabf40de262451a21.71.16052475964246585",
+                      type: "Exit",
+                      uniqueKey: "HttpClient1",
                     },
                   ],
-                  component: 'HttpClient',
+                  component: "HttpClient",
                   dur: 1,
                   endTime: 1605247596426,
-                  endpointName: '/v1/catalog/services',
+                  endpointName: "/v1/catalog/services",
                   isError: false,
-                  label: '/v1/catalog/services',
-                  layer: 'Http',
+                  label: "/v1/catalog/services",
+                  layer: "Http",
                   level: 2,
                   log: [],
                   parentSpanId: 0,
-                  peer: 'do1cloud-insight-consul-server:8500',
+                  peer: "do1cloud-insight-consul-server:8500",
                   refs: [],
                   segmentId:
-                    '449bd9796b2e44cbabf40de262451a21.71.16052475964246584',
-                  serviceCode: 'do1cloud-authorization',
+                    "449bd9796b2e44cbabf40de262451a21.71.16052475964246584",
+                  serviceCode: "do1cloud-authorization",
                   spanId: 1,
                   startTime: 1605247596425,
                   tag: [
                     {
-                      key: 'url',
+                      key: "url",
                       value:
-                        'http://do1cloud-insight-consul-server:8500/v1/catalog/services',
+                        "http://do1cloud-insight-consul-server:8500/v1/catalog/services",
                     },
-                    { key: 'http.method', value: 'GET' },
+                    { key: "http.method", value: "GET" },
                   ],
                   totalExec: 4,
                   traceId:
-                    '449bd9796b2e44cbabf40de262451a21.71.16052475964246585',
-                  type: 'Exit',
-                  uniqueKey: 'HttpClient1',
+                    "449bd9796b2e44cbabf40de262451a21.71.16052475964246585",
+                  type: "Exit",
+                  uniqueKey: "HttpClient1",
                 },
               ],
-              component: 'HttpClient',
+              component: "HttpClient",
               dur: 1,
               endTime: 1605247596426,
-              endpointName: '/v1/catalog/services',
+              endpointName: "/v1/catalog/services",
               isError: true,
-              label: '/v1/catalog/services',
-              layer: 'Http',
+              label: "/v1/catalog/services",
+              layer: "Http",
               level: 2,
               log: [],
               parentSpanId: 0,
-              peer: 'do1cloud-insight-consul-server:8500',
+              peer: "do1cloud-insight-consul-server:8500",
               refs: [],
               segmentId:
-                '449bd9796b2e44cbabf40de262451a21.71.16052475964246584',
-              serviceCode: 'do1cloud-authorization',
+                "449bd9796b2e44cbabf40de262451a21.71.16052475964246584",
+              serviceCode: "do1cloud-authorization",
               spanId: 1,
               startTime: 1605247596425,
               tag: [
                 {
-                  key: 'url',
+                  key: "url",
                   value:
-                    'http://do1cloud-insight-consul-server:8500/v1/catalog/services',
+                    "http://do1cloud-insight-consul-server:8500/v1/catalog/services",
                 },
-                { key: 'http.method', value: 'GET' },
+                { key: "http.method", value: "GET" },
               ],
               totalExec: 45,
-              traceId: '449bd9796b2e44cbabf40de262451a21.71.16052475964246585',
-              type: 'Exit',
-              uniqueKey: 'HttpClient1',
+              traceId: "449bd9796b2e44cbabf40de262451a21.71.16052475964246585",
+              type: "Exit",
+              uniqueKey: "HttpClient1",
             },
             {
               children: [],
-              component: 'HttpClient',
+              component: "HttpClient",
               dur: 0,
               endTime: 1605247596426,
-              endpointName: '/v1/status/leader',
+              endpointName: "/v1/status/leader",
               isError: false,
-              label: '/v1/status/leader',
-              layer: 'Http',
+              label: "/v1/status/leader",
+              layer: "Http",
               level: 2,
               log: [],
               parentSpanId: 0,
-              peer: 'do1cloud-insight-consul-server:8500',
+              peer: "do1cloud-insight-consul-server:8500",
               refs: [],
               segmentId:
-                '449bd9796b2e44cbabf40de262451a21.71.16052475964246584',
-              serviceCode: 'do1cloud-authorization',
+                "449bd9796b2e44cbabf40de262451a21.71.16052475964246584",
+              serviceCode: "do1cloud-authorization",
               spanId: 2,
               startTime: 1605247596426,
               tag: [
                 {
-                  key: 'url',
+                  key: "url",
                   value:
-                    'http://do1cloud-insight-consul-server:8500/v1/status/leader',
+                    "http://do1cloud-insight-consul-server:8500/v1/status/leader",
                 },
-                { key: 'http.method', value: 'GET' },
+                { key: "http.method", value: "GET" },
               ],
               totalExec: 85,
-              traceId: '449bd9796b2e44cbabf40de262451a21.71.16052475964246585',
-              type: 'Exit',
-              uniqueKey: 'HttpClient2',
+              traceId: "449bd9796b2e44cbabf40de262451a21.71.16052475964246585",
+              type: "Exit",
+              uniqueKey: "HttpClient2",
             },
             {
               children: [],
-              component: 'HttpClient',
+              component: "HttpClient",
               dur: 1,
               endTime: 1605247596427,
-              endpointName: '/v1/catalog/services',
+              endpointName: "/v1/catalog/services",
               isError: false,
-              label: '/v1/catalog/services',
-              layer: 'Http',
+              label: "/v1/catalog/services",
+              layer: "Http",
               level: 2,
               logs: [],
               parentSpanId: 0,
-              peer: 'do1cloud-insight-consul-server:8500',
+              peer: "do1cloud-insight-consul-server:8500",
               refs: [],
               segmentId:
-                '449bd9796b2e44cbabf40de262451a21.71.16052475964246584',
-              serviceCode: 'do1cloud-authorization',
+                "449bd9796b2e44cbabf40de262451a21.71.16052475964246584",
+              serviceCode: "do1cloud-authorization",
               spanId: 3,
               startTime: 1605247596426,
               tag: [
                 {
-                  key: 'url',
+                  key: "url",
                   value:
-                    'http://do1cloud-insight-consul-server:8500/v1/catalog/services',
+                    "http://do1cloud-insight-consul-server:8500/v1/catalog/services",
                 },
-                { key: 'http.method', value: 'GET' },
+                { key: "http.method", value: "GET" },
               ],
               totalExec: 4,
-              traceId: '449bd9796b2e44cbabf40de262451a21.71.16052475964246585',
-              type: 'Exit',
-              uniqueKey: 'HttpClient3',
+              traceId: "449bd9796b2e44cbabf40de262451a21.71.16052475964246585",
+              type: "Exit",
+              uniqueKey: "HttpClient3",
             },
           ],
-          name: 'asdf',
-          component: 'Tomcat',
+          name: "asdf",
+          component: "Tomcat",
           dur: 2,
           endTime: 1605247596428,
-          endpointName: '/actuator/health',
+          endpointName: "/actuator/health",
           isError: false,
-          label: '/actuator/health',
-          layer: 'Http',
+          label: "/actuator/health",
+          layer: "Http",
           level: 1,
           log: [],
           parentSpanId: -1,
-          peer: '',
+          peer: "",
           refs: [],
-          segmentId: '449bd9796b2e44cbabf40de262451a21.71.16052475964246584',
-          serviceCode: 'do1cloud-authorization',
+          segmentId: "449bd9796b2e44cbabf40de262451a21.71.16052475964246584",
+          serviceCode: "do1cloud-authorization",
           spanId: 0,
           startTime: 1605247596424,
           tag: [
-            { key: 'url', value: 'http://10.20.119.135:11001/actuator/health' },
-            { key: 'http.method', value: 'GET' },
+            { key: "url", value: "http://10.20.119.135:11001/actuator/health" },
+            { key: "http.method", value: "GET" },
           ],
           totalExec: 40,
-          traceId: '449bd9796b2e44cbabf40de262451a21.71.16052475964246585',
-          type: 'Entry',
-          uniqueKey: 'Tomcat0',
+          traceId: "449bd9796b2e44cbabf40de262451a21.71.16052475964246585",
+          type: "Entry",
+          uniqueKey: "Tomcat0",
         },
       ],
-      chartTitle: '树图',
-    }
+      chartTitle: "树图",
+    };
   },
   mounted() {
-    this.canvasDraw()
+    this.canvasDraw();
   },
   methods: {
     canvasDraw() {
-      let canvas = document.getElementById('canvas_1') //从html中获取到Canvas
-      let ctx_2d = canvas.getContext('2d') //得到canvas的渲染上下文
+      let canvas = document.getElementById("canvas_1"); //从html中获取到Canvas
+      let ctx_2d = canvas.getContext("2d"); //得到canvas的渲染上下文
 
       // ctx_2d.fillStyle = 'rgb(200,0,0)' //设置颜色为红色
       // ctx_2d.fillRect(10, 10, 55, 50) //设置矩形的大小
@@ -744,21 +766,21 @@ export default {
 
       //<--------Path2D—------->
       //我们创造了一个矩形和一个圆。它们都被存为Path2D对象，后面再派上用场
-      var rectangle = new Path2D()
-      rectangle.rect(10, 10, 50, 50)
+      var rectangle = new Path2D();
+      rectangle.rect(10, 10, 50, 50);
 
-      var circle = new Path2D()
-      circle.moveTo(125, 35)
-      circle.arc(100, 35, 25, 0, Math.PI * 2)
+      var circle = new Path2D();
+      circle.moveTo(125, 35);
+      circle.arc(100, 35, 25, 0, Math.PI * 2);
 
-      ctx_2d.stroke(rectangle)
-      ctx_2d.fill(circle)
+      ctx_2d.stroke(rectangle);
+      ctx_2d.fill(circle);
     },
     click() {
-      console.log('点我了')
+      console.log("点我了");
     },
   },
-}
+};
 </script>
 
 <style>
