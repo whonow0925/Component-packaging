@@ -30,6 +30,10 @@
     <template v-if="showScollTimeline">
       <scroll-timeline></scroll-timeline>
     </template>
+    <!-- video -->
+    <template v-if="showZyVideo">
+      <zy-video></zy-video>
+    </template>
   </div>
 </template>
 
@@ -42,6 +46,7 @@ import ZyCharts from "./components/Echart.vue";
 import TreeChart from "./components/treeChart/index.vue";
 // import Canvas from './components/Canvas/index'
 import ScrollTimeline from "./components/scrollTimeLine/index.vue";
+import ZyVideo from "./components/video/index.vue"
 
 export default {
   name: "App",
@@ -53,10 +58,12 @@ export default {
     TreeChart,
     // Canvas,
     ScrollTimeline,
+    ZyVideo
   },
   data() {
     return {
-      showScollTimeline: true,
+      showZyVideo:true,
+      showScollTimeline: false,
       showCanvas: false,
       showTreeChart: false,
       showZyCharts: false,
@@ -696,7 +703,7 @@ export default {
     };
   },
   mounted() {
-    this.canvasDraw();
+    // this.canvasDraw();
   },
   methods: {
     canvasDraw() {
